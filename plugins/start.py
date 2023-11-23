@@ -155,25 +155,21 @@ async def get_users(client: Bot, message: Message):
 
 
 
-@Bot.on_message(filters.private & filters.command('b') & filters.user(ADMINS))
+@Bot.on_message(filters.private & filters.command('broadcast') & filters.user(ADMINS))
 async def send_text(client: Bot, message: Message):
     if message.reply_to_message:
         query = await full_userbase()
         broadcast_msg = message.reply_to_message
-        
         total = 0
         successful = 0
         blocked = 0
         deleted = 0
         unsuccessful = 0
         
-        pls_wait = await message.reply("ʙʀᴏᴀᴅᴄᴀꜱᴛɪɴɢ...")
+        pls_wait = await message.reply("<i>ᴘʀᴏᴄᴇssɪɴɢ...</i>")
         for chat_id in query:
             try:
-                user = await bot.get_chat(chat_id)
-                #text = broadcast_msg.text.replace("{first_name}", user.first_name)
-                #await m.reply_to_message.copy(int(userid))
-                await Bot.send_message(chat_id, broadcast_msg)
+                await broadcast_msg.copy(chat_id)
                 successful += 1
             except FloodWait as e:
                 await asyncio.sleep(e.x)
@@ -204,35 +200,3 @@ async def send_text(client: Bot, message: Message):
         msg = await message.reply(REPLY_ERROR)
         await asyncio.sleep(8)
         await msg.delete()
-
-@Bot.on_message(filters.private & filters.command('broadcast') & filters.user(ADMINS))
-async def bcast(_, m : Message):
-    allusers = await full_userbase()
-    lel = await m.reply_text("`⚡️ Processing...`")
-    success = 0
-    failed = 0
-    deactivated = 0
-    blocked = 0
-    for usrs in allusers.find():
-        try:
-            userid = usrs["user_id"]
-            print(int(userid))
-            if m.command[0] == "bcast":
-                await m.reply_to_message.copy(int(userid))
-            success +=1
-        except FloodWait as ex:
-            await asyncio.sleep(ex.value)
-            if m.command[0] == "bcast":
-                await m.reply_to_message.copy(int(userid))
-        except errors.InputUserDeactivated:
-            deactivated +=1
-            remove_user(userid)
-        except errors.UserIsBlocked:
-            blocked +=1
-        except Exception as e:
-            print(e)
-            failed +=1
-
-    await lel.edit(f"✅Successfull to `{success}` users.\n\n❌ Failed to `{failed}` users.\n👾 Found `{blocked}` Blocked users \n👻 Found `{deactivated}` Deactivated users.")
-
-#━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
