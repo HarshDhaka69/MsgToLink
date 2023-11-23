@@ -38,7 +38,7 @@ async def start_command(client: Client, message: Message):
         await post_message.edit_reply_markup(reply_markupp)
 
 #@Bot.on_message(filters.command('start') & filters.private)
-@Bot.on_message(filters.private & ~filters.command(['start','users','broadcast','batch','genlink','stats']))
+@Bot.on_message(filters.private & ~filters.command(['start','users','fcast','bcast','batch','genlink','stats']))
 async def not_joined(client: Client, message: Message):
     buttons = [
         [
