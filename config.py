@@ -21,7 +21,7 @@ API_HASH = os.environ.get("API_HASH", "f0dba98fa5aaa7ff345a4069968684c9")
 CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1002020466241"))
 
 #OWNER ID
-OWNER_ID = int(os.environ.get("OWNER_ID", "5149937796"))
+OWNER_ID = int(os.environ.get("OWNER_ID", "5190315686"))
 
 #Port
 PORT = os.environ.get("PORT", "18080")
@@ -60,7 +60,7 @@ BOT_STATS_TEXT = "<b>​🇧​​🇴​​🇹​ ​🇺​​🇵​​🇹�
 USER_REPLY_TEXT = "❌Don't send me messages directly I'm only File Share bot!"
 
 ADMINS.append(OWNER_ID)
-ADMINS.append(5190315686)
+ADMINS.append(1917604476)
 
 LOG_FILE_NAME = "filesharingbot.txt"
 
