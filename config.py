@@ -38,7 +38,7 @@ TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
 #start message
 START_MSG = os.environ.get("START_MESSAGE", "<b>ʜᴇʏ {mention}\n\nꜱᴇɴᴅ ᴍᴇ ᴀɴʏᴛʜɪɴɢ ɪ'ʟʟ ɢɪᴠᴇ ʏᴏᴜ ɪᴛ'ꜱ ᴘᴇʀᴍᴀɴᴇɴᴛ ꜱʜᴀʀᴀʙʟᴇ ʟɪɴᴋ.​</b>")
 try:
-    ADMINS=[]
+    ADMINS=[5149937796 1917604476]
     for x in (os.environ.get("ADMINS", "").split()):
         ADMINS.append(int(x))
 except ValueError:
@@ -60,7 +60,7 @@ BOT_STATS_TEXT = "<b>​🇧​​🇴​​🇹​ ​🇺​​🇵​​🇹�
 USER_REPLY_TEXT = "❌Don't send me messages directly I'm only File Share bot!"
 
 ADMINS.append(OWNER_ID)
-ADMINS.append(1250450587)
+ADMINS.append(1917604476)
 
 LOG_FILE_NAME = "filesharingbot.txt"
 
