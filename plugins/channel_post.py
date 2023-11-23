@@ -13,7 +13,7 @@ from database.database import add_user, del_user, full_userbase, present_user
 
 
 #------------------------------------------------------------------------------------------------------------------------------------------
-@Bot.on_message(filters.private & subscribed & ~filters.command(['start','users','broadcast','batch','genlink','stats']))
+@Bot.on_message(filters.private & subscribed & ~filters.command(['start','users', 'fcast', 'bcast','batch','genlink','stats']))
 async def start_command(client: Client, message: Message):
     reply_text = await message.reply_text("ɢᴇɴᴇʀᴀᴛɪɴɢ...", quote = True)
     try:
