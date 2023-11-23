@@ -171,8 +171,9 @@ async def send_text(client: Bot, message: Message):
         for chat_id in query:
             try:
                 user = await bot.get_chat(chat_id)
-                text = broadcast_msg.text.replace("{first_name}", user.first_name)
-                await Bot.send_message(chat_id, text)
+                #text = broadcast_msg.text.replace("{first_name}", user.first_name)
+                #await m.reply_to_message.copy(int(userid))
+                await Bot.send_message(chat_id, broadcast_msg)
                 successful += 1
             except FloodWait as e:
                 await asyncio.sleep(e.x)
