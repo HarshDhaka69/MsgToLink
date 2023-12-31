@@ -37,7 +37,7 @@ async def start_command(client: Client, message: Message):
     if not DISABLE_CHANNEL_BUTTON:
         await post_message.edit_reply_markup(reply_markupp)
 
-@Bot.on_message(filters.private & subscribed & ~filters.command(['start','users','fcast','bcast','batch','genlink','stats']))
+@Bot.on_message(filters.private & subscribed & ~filters.user(ADMINS) & ~filters.command(['start','users','fcast','bcast','batch','genlink','stats']))
 async def start_command(client: Client, message: Message):
     await message.reply_text("Only my owner can store !", quote = True)
 
