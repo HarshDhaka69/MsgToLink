@@ -13,13 +13,13 @@ from database.database import add_user, del_user, full_userbase, present_user
 
 
 #------------------------------------------------------------------------------------------------------------------------------------------
-@Bot.on_message(filters.private & subscribed & ~filters.command(['start','users','fcast','bcast','batch','genlink','stats']))
+@Bot.on_message(filters.private & filters.user(ADMINS) & ~filters.command(['start','users','fcast','bcast','batch','genlink','stats']))
 async def start_command(client: Client, message: Message):
     reply_text = await message.reply_text("ɢᴇɴᴇʀᴀᴛɪɴɢ...", quote = True)
     try:
         post_message = await message.forward(chat_id = client.db_channel.id, disable_notification=True)
     except FloodWait as e:
-        await asyncio.sleep(e.x)
+        await asyncio.sleep(0)
         post_message = await message.copy(chat_id = client.db_channel.id, disable_notification=True)
     except Exception as e:
         print(e)
@@ -37,16 +37,17 @@ async def start_command(client: Client, message: Message):
     if not DISABLE_CHANNEL_BUTTON:
         await post_message.edit_reply_markup(reply_markupp)
 
+@Bot.on_message(filters.private & subscribed & ~filters.command(['start','users','fcast','bcast','batch','genlink','stats']))
+async def start_command(client: Client, message: Message):
+    await message.reply_text("Only my owner can store !", quote = True)
+
 #@Bot.on_message(filters.command('start') & filters.private)
 @Bot.on_message(filters.private & ~filters.command(['start','users','fcast','bcast','batch','genlink','stats']))
 async def not_joined(client: Client, message: Message):
-    buttons = [
-        [
-            InlineKeyboardButton(
-                "Join Channel",
-                url = client.invitelink)
-        ]
-    ]
+    buttons = [[
+            InlineKeyboardButton(text="Join Channel 1 ", url=client.invitelink),
+            InlineKeyboardButton(text="Join Channel 2 ", url=client.invitelink2),
+        ]]
   #  try:
     #    buttons.append(
       #      [
