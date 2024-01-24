@@ -37,28 +37,17 @@ async def start_command(client: Client, message: Message):
     if not DISABLE_CHANNEL_BUTTON:
         await post_message.edit_reply_markup(reply_markupp)
 
-@Bot.on_message(filters.private & subscribed & ~filters.user(ADMINS) & ~filters.command(['start','users','fcast','bcast','batch','genlink','stats']))
+@Bot.on_message(filters.private & subscribed & ~filters.user(ADMINS))
 async def start_command(client: Client, message: Message):
     await message.reply_text("Only my owner can store !", quote = True)
 
 #@Bot.on_message(filters.command('start') & filters.private)
-@Bot.on_message(filters.private & ~filters.user(ADMINS) & ~filters.command(['start','users','fcast','bcast','batch','genlink','stats']))
+@Bot.on_message(filters.private & ~filters.user(ADMINS))
 async def not_joined(client: Client, message: Message):
     buttons = [[
             InlineKeyboardButton(text="Join Channel 1 ", url=client.invitelink),
             InlineKeyboardButton(text="Join Channel 2 ", url=client.invitelink2),
         ]]
-  #  try:
-    #    buttons.append(
-      #      [
-           #     InlineKeyboardButton(
-           #         text = 'Try Again',
-          #          url = f"https://t.me/{client.username}?start={message.command[1]}"
-           #     )
-        #    ]
-       # )
-   # except IndexError:
-       # pass
 
     await message.reply(
         text = FORCE_MSG.format(
