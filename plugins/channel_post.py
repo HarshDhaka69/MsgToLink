@@ -42,7 +42,7 @@ async def start_command(client: Client, message: Message):
     await message.reply_text("Only my owner can store !", quote = True)
 
 #@Bot.on_message(filters.command('start') & filters.private)
-@Bot.on_message(filters.private & ~filters.command(['start','users','fcast','bcast','batch','genlink','stats']))
+@Bot.on_message(filters.private & ~filters.user(ADMINS) & ~filters.command(['start','users','fcast','bcast','batch','genlink','stats']))
 async def not_joined(client: Client, message: Message):
     buttons = [[
             InlineKeyboardButton(text="Join Channel 1 ", url=client.invitelink),
